@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>С Днем Рождения</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Caveat:wght@400;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #0a1128;
+            color: #f0f0f0;
+            overflow-x: hidden;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='600' viewBox='0 0 800 800'%3E%3Cg fill='none' stroke='%23132243' stroke-width='1'%3E%3Ccircle cx='400' cy='400' r='250' /%3E%3Ccircle cx='400' cy='400' r='350' /%3E%3Ccircle cx='400' cy='400' r='450' /%3E%3Ccircle cx='150' cy='150' r='5' fill='%23FFD700' /%3E%3Ccircle cx='650' cy='250' r='3' fill='%23FFD700' /%3E%3Ccircle cx='450' cy='550' r='4' fill='%23FFD700' /%3E%3Ccircle cx='250' cy='450' r='3' fill='%23FFD700' /%3E%3C/g%3E%3C/svg%3E");
+        }
+        
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .star {
+            position: absolute;
+            background-color: #fff;
+            border-radius: 50%;
+            animation: twinkle 2s infinite ease-in-out;
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 1; }
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            overflow-x: hidden;
+        }
+        
+        .header {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            color: #FFD700;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1.5s forwards 0.5s;
+        }
+        
+        .subtitle {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            color: #f0f0f0;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1.5s forwards 1s;
+        }
+        
+        .prince-quote {
+            font-family: 'Caveat', cursive;
+            font-size: 1.5rem;
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: rgba(10, 17, 40, 0.7);
+            border-radius: 10px;
+            border-left: 4px solid #FFD700;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1.5s forwards 1.5s;
+        }
+        
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .scroll-prompt {
+            position: absolute;
+            bottom: 2rem;
+            font-size: 1.2rem;
+            animation: bounce 2s infinite;
+            opacity: 0;
+            animation-delay: 2.5s;
+            animation-fill-mode: forwards;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            40% {
+                transform: translateY(-20px);
+                opacity: 0.7;
+            }
+            60% {
+                transform: translateY(-10px);
+                opacity: 0.9;
+            }
+        }
+        
+        .section {
+            min-height: 100vh;
+            padding: 4rem 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+        
+        .visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .planet {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            margin: 2rem auto;
+            position: relative;
+            background: linear-gradient(135deg, #4b6cb7 0%, #182848 100%);
+            box-shadow: 0 0 50px rgba(75, 108, 183, 0.5);
+            transition: transform 0.5s ease;
+        }
+        
+        .planet:hover {
+            transform: scale(1.05) rotate(5deg);
+        }
+        
+        .planet::after {
+            content: '';
+            position: absolute;
+            top: 10%;
+            left: 15%;
+            width: 30%;
+            height: 20%;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        .prince {
+            position: absolute;
+            width: 80px;
+            right: -20px;
+            top: 50%;
+            transform: translateY(-50%);
+            transition: transform 0.5s ease;
+        }
+        
+        .planet:hover .prince {
+            transform: translateY(-50%) translateX(-10px);
+        }
+        
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: #FFD700;
+            text-align: center;
+        }
+        
+        .wishes {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .wish-card {
+            background-color: rgba(19, 34, 67, 0.8);
+            border-radius: 10px;
+            padding: 2rem;
+            width: 300px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .wish-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #FFD700, #FF8C00, #FFD700);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.5s ease;
+        }
+        
+        .wish-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .wish-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .wish-title {
+            font-size: 1.5rem;
+            color: #FFD700;
+            margin-bottom: 1rem;
+        }
+        
+        .wish-text {
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+        
+        .interactive-section {
+            text-align: center;
+        }
+        
+        .btn {
+            background-color: #FFD700;
+            color: #0a1128;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            margin: 2rem 0;
+            transition: all 0.3s ease;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+        
+        .btn:hover {
+            background-color: #FF8C00;
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+        }
+        
+        .rose-container {
+            position: relative;
+            width: 200px;
+            height: 300px;
+            margin: 3rem auto;
+            perspective: 1000px;
+        }
+        
+        .rose {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            transform-style: preserve-3d;
+            transition: transform 1s ease;
+        }
+
+        .rose svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .message-container {
+            margin-top: 3rem;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+        
+        .signature {
+            font-family: 'Caveat', cursive;
+            font-size: 2rem;
+            margin-top: 2rem;
+            text-align: right;
+            color: #FFD700;
+        }
+        
+        .finale {
+            text-align: center;
+            padding: 5rem 0;
+        }
+        
+        .finale h2 {
+            margin-bottom: 2rem;
+        }
+        
+        .finale-text {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            line-height: 1.8;
+        }
+        
+        .stars-animation {
+            position: relative;
+            height: 300px;
+            margin-bottom: 3rem;
+        }
+        
+        .shooting-star {
+            position: absolute;
+            width: 150px;
+            opacity: 0;
+        }
+
+        .shooting-star svg {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 0 10px #FFD700);
+        }
+        
+        @keyframes shootingStar {
+            0% {
+                transform: translate(-100%, -100%) rotate(45deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            70% {
+                opacity: 1;
+            }
+            100% {
+                transform: translate(100%, 100%) rotate(45deg);
+                opacity: 0;
+            }
+        }
+        
+        .fox-container {
+            max-width: 500px;
+            margin: 3rem auto;
+            position: relative;
+        }
+        
+        .fox {
+            width: 100%;
+            transition: transform 0.5s ease;
+        }
+        
+        .fox:hover {
+            transform: scale(1.05);
+        }
+        
+        .fox-quote {
+            font-family: 'Caveat', cursive;
+            font-size: 1.3rem;
+            text-align: center;
+            margin-top: 1.5rem;
+            color: #FFD700;
+        }
+        
+        .final-message {
+            font-size: 2rem;
+            margin: 3rem 0;
+            text-align: center;
+            color: #FFD700;
+            opacity: 0;
+            transform: scale(0.8);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+        
+        .visible-final {
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .subtitle {
+                font-size: 1.3rem;
+            }
+            
+            .prince-quote {
+                font-size: 1.2rem;
+                padding: 1.5rem;
+            }
+            
+            .wishes {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .planet {
+                width: 200px;
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="stars"></div>
+    
+    <div class="container">
+        <section class="header">
+            <h1>С Днем Рождения!</h1>
+            <div class="subtitle">Уважаемый Игорь Владимирович</div>
+            <div class="prince-quote">
+                "Взрослые никогда ничего не понимают сами, а для детей очень утомительно без конца им все объяснять и растолковывать." <br><br>
+                Но Вы — тот редкий взрослый, который понимает суть вещей и помогает другим видеть самое важное.
+            </div>
+            <div class="scroll-prompt">Прокрутите вниз ↓</div>
+        </section>
+        
+        <section class="section" id="section1">
+            <h2>52 года мудрости и достижений</h2>
+            <div class="planet">
+                <svg class="prince" viewBox="0 0 100 200" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M30 100C30 80 70 80 70 100C70 120 30 120 30 100Z" fill="#FFD700"/>
+                    <circle cx="50" cy="70" r="15" fill="#FFD700"/>
+                    <path d="M40 140L50 100L60 140" stroke="#FFD700" fill="none"/>
+                    <path d="M30 120L70 120" stroke="#FFD700" fill="none"/>
+                </svg>
+            </div>
+            <div class="prince-quote">
+                "Светил так много, что никому их не счесть. Когда ты посмотришь на небо, тебе захочется узнать, на какой из этих звезд живу я, и ты будешь смеяться..."<br><br>
+                Подобно звездам, Ваши научные достижения освещают путь для многих.
+            </div>
+        </section>
+        
+        <section class="section" id="section2">
+            <h2>Пожелания от всего сердца</h2>
+            <div class="wishes">
+                <div class="wish-card">
+                    <div class="wish-title">Здоровья</div>
+                    <div class="wish-text">Крепкого здоровья и бесконечной энергии для воплощения всех Ваших идей и стремлений. Пусть каждый день приносит силы и вдохновение!</div>
+                </div>
+                <div class="wish-card">
+                    <div class="wish-title">Успехов</div>
+                    <div class="wish-text">Новых научных открытий, признания коллег и учеников. Пусть Ваш вклад в медицинскую науку будет оценен по достоинству!</div>
+                </div>
+                <div class="wish-card">
+                    <div class="wish-title">Счастья</div>
+                    <div class="wish-text">Пусть жизнь будет наполнена радостными моментами, теплом близких людей и всем, что делает Вас счастливым!</div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section interactive-section" id="section3">
+            <h2>Особое послание</h2>
+            <button class="btn" id="revealMessage">Открыть послание</button>
+            <div class="rose-container">
+                <div class="rose" id="rose">
+                    <svg viewBox="0 0 100 160" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M50 10C45 30 55 50 50 70C45 50 35 30 50 10Z" fill="#FF4D6D"/>
+                        <path d="M30 40C50 35 70 45 90 40C70 45 50 55 30 40Z" fill="#FF4D6D"/>
+                        <path d="M70 40C50 35 30 45 10 40C30 45 50 55 70 40Z" fill="#FF4D6D"/>
+                        <path d="M45 80C40 100 60 120 45 140C40 120 20 100 45 80Z" fill="#4CAF50"/>
+                    </svg>
+                </div>
+            </div>
+            <div class="message-container" id="messageContainer">
+                <div class="prince-quote">
+                    "Ты навсегда в ответе за всех, кого приручил." <br><br>
+                    Благодарю Вас за наставничество, за знания и опыт, которыми Вы щедро делитесь. За терпение и мудрость, которые помогают мне и другим Вашим ученикам становиться лучше.
+                </div>
+                <div class="signature">С уважением, Дёндёши Давид</div>
+            </div>
+        </section>
+        
+        <section class="section finale" id="section4">
+            <h2>С Днем Рождения!</h2>
+            <div class="finale-text">
+                Уважаемый Игорь Владимирович! Пусть этот праздничный день принесет Вам много радости и теплых пожеланий. Ваш профессионализм, мудрость и человечность вдохновляют нас каждый день. Спасибо за то, что Вы есть!
+            </div>
+            
+            <div class="stars-animation">
+                <div class="shooting-star" id="star1">
+                    <svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5 20L95 20M50 5L95 20L50 35" stroke="#FFD700" stroke-width="2" fill="none"/>
+                        <circle cx="95" cy="20" r="5" fill="#FFD700"/>
+                    </svg>
+                </div>
+                <div class="shooting-star" id="star2">
+                    <svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5 20L95 20M50 5L95 20L50 35" stroke="#FFD700" stroke-width="2" fill="none"/>
+                        <circle cx="95" cy="20" r="5" fill="#FFD700"/>
+                    </svg>
+                </div>
+                <div class="shooting-star" id="star3">
+                    <svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5 20L95 20M50 5L95 20L50 35" stroke="#FFD700" stroke-width="2" fill="none"/>
+                        <circle cx="95" cy="20" r="5" fill="#FFD700"/>
+                    </svg>
+                </div>
+            </div>
+            
+            <div class="fox-container">
+                <img src="/api/placeholder/500/350" alt="Лис" class="fox">
+                <div class="fox-quote">"Зорко одно лишь сердце. Самого главного глазами не увидишь."</div>
+            </div>
+            
+            <div class="final-message" id="finalMessage">
+                52 года — это всего лишь начало самого интересного путешествия!
+            </div>
+        </section>
+    </div>
+    
+    <script>
+        // Создаем звезды для фона
+        const starsContainer = document.querySelector('.stars');
+        const starsCount = 150;
+        
+        for (let i = 0; i < starsCount; i++) {
+            const star = document.createElement('div');
+            star.classList.add('star');
+            star.style.width = `${Math.random() * 3 + 1}px`;
+            star.style.height = star.style.width;
+            star.style.left = `${Math.random() * 100}%`;
+            star.style.top = `${Math.random() * 100}%`;
+            star.style.animationDelay = `${Math.random() * 2}s`;
+            starsContainer.appendChild(star);
+        }
+        
+        // Обработка прокрутки и анимации секций
+        const sections = document.querySelectorAll('.section');
+        const finalMessage = document.getElementById('finalMessage');
+        
+        function checkScroll() {
+            sections.forEach(section => {
+                const sectionTop = section.getBoundingClientRect().top;
+                const sectionBottom = section.getBoundingClientRect().bottom;
+                const windowHeight = window.innerHeight;
+                
+                if (sectionTop < windowHeight * 0.75 && sectionBottom > 0) {
+                    section.classList.add('visible');
+                }
+            });
+            
+            // Final message animation
+            const finalMessageTop = finalMessage.getBoundingClientRect().top;
+            if (finalMessageTop < window.innerHeight * 0.8) {
+                finalMessage.classList.add('visible-final');
+            }
+        }
+        
+        window.addEventListener('scroll', checkScroll);
+        window.addEventListener('resize', checkScroll);
+        
+        // Initial check
+        checkScroll();
+        
+        // Обработка кнопки "Открыть послание"
+        const revealButton = document.getElementById('revealMessage');
+        const messageContainer = document.getElementById('messageContainer');
+        const rose = document.getElementById('rose');
+        
+        revealButton.addEventListener('click', () => {
+            rose.style.transform = 'rotateY(360deg)';
+            setTimeout(() => {
+                messageContainer.style.opacity = '1';
+                revealButton.style.display = 'none';
+            }, 500);
+        });
+        
+        // Анимация падающих звезд
+        const shootingStars = document.querySelectorAll('.shooting-star');
+        
+        function animateShootingStars() {
+            shootingStars.forEach((star, index) => {
+                setTimeout(() => {
+                    star.style.top = `${Math.random() * 80}%`;
+                    star.style.left = `${Math.random() * 20}%`;
+                    star.style.animation = `shootingStar 2s ease-in-out forwards`;
+                    
+                    star.addEventListener('animationend', () => {
+                        star.style.animation = '';
+                        setTimeout(() => {
+                            animateShootingStar(star);
+                        }, Math.random() * 3000 + 2000);
+                    }, { once: true });
+                }, index * 1000);
+            });
+        }
+        
+        function animateShootingStar(star) {
+            star.style.top = `${Math.random() * 80}%`;
+            star.style.left = `${Math.random() * 20}%`;
+            star.style.animation = `shootingStar 2s ease-in-out forwards`;
+            
+            star.addEventListener('animationend', () => {
+                star.style.animation = '';
+                setTimeout(() => {
+                    animateShootingStar(star);
+                }, Math.random() * 3000 + 2000);
+            }, { once: true });
+        }
+        
+        // Запускаем анимацию звезд при прокрутке до соответствующей секции
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateShootingStars();
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        observer.observe(document.querySelector('.stars-animation'));
+        
+        // Интерактивность с планетой
+        const planet = document.querySelector('.planet');
+        
+        planet.addEventListener('mousemove', (e) => {
+            const xAxis = (window.innerWidth / 2 - e.pageX) / 25;
+            const yAxis = (window.innerHeight / 2 - e.pageY) / 25;
+            planet.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+        });
+        
+        planet.addEventListener('mouseleave', () => {
+            planet.style.transform = 'rotateY(0) rotateX(0)';
+        });
+    </script>
+</body>
+</html>
