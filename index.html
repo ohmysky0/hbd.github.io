@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>С Днем Рождения</title>
+    <title>С Днем Рождения, Игорь Владимирович!</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Caveat:wght@400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&family=Marck+Script&display=swap');
         
         * {
             margin: 0;
@@ -14,11 +14,12 @@
         }
         
         body {
-            font-family: 'Montserrat', sans-serif;
-            background-color: #0a1128;
-            color: #f0f0f0;
+            font-family: 'Cormorant Garamond', serif;
+            background-color: #0a0d24;
+            color: #ffffff;
             overflow-x: hidden;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='600' viewBox='0 0 800 800'%3E%3Cg fill='none' stroke='%23132243' stroke-width='1'%3E%3Ccircle cx='400' cy='400' r='250' /%3E%3Ccircle cx='400' cy='400' r='350' /%3E%3Ccircle cx='400' cy='400' r='450' /%3E%3Ccircle cx='150' cy='150' r='5' fill='%23FFD700' /%3E%3Ccircle cx='650' cy='250' r='3' fill='%23FFD700' /%3E%3Ccircle cx='450' cy='550' r='4' fill='%23FFD700' /%3E%3Ccircle cx='250' cy='450' r='3' fill='%23FFD700' /%3E%3C/g%3E%3C/svg%3E");
+            position: relative;
+            min-height: 100vh;
         }
         
         .stars {
@@ -27,614 +28,748 @@
             left: 0;
             width: 100%;
             height: 100%;
-            pointer-events: none;
             z-index: -1;
         }
         
-        .star {
-            position: absolute;
-            background-color: #fff;
-            border-radius: 50%;
-            animation: twinkle 2s infinite ease-in-out;
-        }
-        
-        @keyframes twinkle {
-            0%, 100% { opacity: 0.2; }
-            50% { opacity: 1; }
-        }
+        .stars {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+    overflow: hidden;
+}
+
+.star {
+    position: absolute;
+    background-color: #ffffff;
+    border-radius: 50%;
+    animation: twinkle 5s infinite ease-in-out;
+}
+
+.star.small {
+    width: 1px;
+    height: 1px;
+    box-shadow: 0 0 2px #fff;
+}
+
+.star.medium {
+    width: 2px;
+    height: 2px;
+    box-shadow: 0 0 3px #fff, 0 0 5px #7B68EE;
+}
+
+.star.large {
+    width: 3px;
+    height: 3px;
+    box-shadow: 0 0 4px #fff, 0 0 6px #7B68EE, 0 0 8px #ffd700;
+}
+
+@keyframes twinkle {
+    0% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.3); }
+    100% { opacity: 0.3; transform: scale(1); }
+}
+
+.shooting-star {
+    position: absolute;
+    width: 100px;
+    height: 2px;
+    background: linear-gradient(to right, rgba(255,255,255,0), rgba(255,255,255,1), rgba(255,215,0,1));
+    border-radius: 50%;
+    animation: shoot 10s linear infinite;
+    opacity: 0;
+    transform-origin: right center;
+    z-index: -1;
+}
+
+@keyframes shoot {
+    0% { 
+        transform: translateX(0) rotate(0deg) scale(0);
+        opacity: 0;
+    }
+    1% {
+        opacity: 1;
+    }
+    5% { 
+        transform: translateX(-200px) rotate(0deg) scale(1);
+        opacity: 1;
+    }
+    8% {
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(-200px) rotate(0deg) scale(1);
+        opacity: 0;
+    }
+}
+
+.nebula {
+    position: absolute;
+    background: radial-gradient(ellipse at center, 
+        rgba(123, 104, 238, 0.2) 0%, 
+        rgba(255, 215, 0, 0.1) 40%, 
+        rgba(30, 32, 104, 0.05) 70%, 
+        rgba(0, 0, 0, 0) 100%);
+    border-radius: 50%;
+    opacity: 0.4;
+    animation: float 40s linear infinite;
+}
+
+@keyframes float {
+    0% { transform: translate(0, 0) scale(1); }
+    25% { transform: translate(10px, 10px) scale(1.05); }
+    50% { transform: translate(0, 20px) scale(1); }
+    75% { transform: translate(-10px, 10px) scale(0.95); }
+    100% { transform: translate(0, 0) scale(1); }
+}
         
         .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
-            overflow-x: hidden;
+            max-width: 100%;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
         }
         
         .header {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
             text-align: center;
-            position: relative;
+            padding: 40px 0;
+            animation: fadeIn 2s ease-in-out;
         }
         
-        h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            color: #FFD700;
-            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInUp 1.5s forwards 0.5s;
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            color: #ffd700;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
         }
         
-        .subtitle {
-            font-size: 1.8rem;
-            margin-bottom: 2rem;
-            color: #f0f0f0;
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInUp 1.5s forwards 1s;
+        .header h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #e6e6fa;
         }
         
-        .prince-quote {
-            font-family: 'Caveat', cursive;
-            font-size: 1.5rem;
-            max-width: 800px;
-            margin: 2rem auto;
-            padding: 2rem;
-            background-color: rgba(10, 17, 40, 0.7);
-            border-radius: 10px;
-            border-left: 4px solid #FFD700;
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInUp 1.5s forwards 1.5s;
-        }
-        
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .scroll-prompt {
-            position: absolute;
-            bottom: 2rem;
+        .header p {
             font-size: 1.2rem;
-            animation: bounce 2s infinite;
-            opacity: 0;
-            animation-delay: 2.5s;
-            animation-fill-mode: forwards;
-        }
-        
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateY(0);
-                opacity: 1;
-            }
-            40% {
-                transform: translateY(-20px);
-                opacity: 0.7;
-            }
-            60% {
-                transform: translateY(-10px);
-                opacity: 0.9;
-            }
-        }
-        
-        .section {
-            min-height: 100vh;
-            padding: 4rem 0;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            opacity: 0;
-            transform: translateY(50px);
-            transition: opacity 1s ease, transform 1s ease;
-        }
-        
-        .visible {
-            opacity: 1;
-            transform: translateY(0);
         }
         
         .planet {
-            width: 250px;
-            height: 250px;
+            width: 180px;
+            height: 180px;
+            background: radial-gradient(circle at 30% 30%, #7B68EE, #1e2068);
             border-radius: 50%;
-            margin: 2rem auto;
+            margin: 30px auto;
             position: relative;
-            background: linear-gradient(135deg, #4b6cb7 0%, #182848 100%);
-            box-shadow: 0 0 50px rgba(75, 108, 183, 0.5);
-            transition: transform 0.5s ease;
+            box-shadow: 0 0 40px rgba(123, 104, 238, 0.6);
+            animation: rotate 60s linear infinite;
         }
         
-        .planet:hover {
-            transform: scale(1.05) rotate(5deg);
-        }
-        
-        .planet::after {
-            content: '';
+        .crater {
             position: absolute;
-            top: 10%;
-            left: 15%;
-            width: 30%;
-            height: 20%;
+            background-color: rgba(0, 0, 0, 0.2);
             border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.2);
         }
         
         .prince {
             position: absolute;
             width: 80px;
-            right: -20px;
-            top: 50%;
-            transform: translateY(-50%);
-            transition: transform 0.5s ease;
+            height: 80px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="35" r="15" fill="yellow"/><rect x="45" y="50" width="10" height="20" fill="blue"/><rect x="30" y="70" width="40" height="5" fill="blue"/><circle cx="42" cy="35" r="2" fill="black"/><circle cx="58" cy="35" r="2" fill="black"/><path d="M45 40 Q50 45 55 40" stroke="black" fill="transparent" stroke-width="1"/><rect x="40" y="20" width="20" height="10" fill="yellow"/></svg>');
+            background-size: contain;
+            background-repeat: no-repeat;
+            top: -40px;
+            right: 10px;
+            transform-origin: bottom center;
+            animation: sway 4s ease-in-out infinite;
         }
         
-        .planet:hover .prince {
-            transform: translateY(-50%) translateX(-10px);
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
         
-        h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-            color: #FFD700;
-            text-align: center;
-        }
-        
-        .wishes {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-        
-        .wish-card {
-            background-color: rgba(19, 34, 67, 0.8);
-            border-radius: 10px;
-            padding: 2rem;
-            width: 300px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .wish-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, #FFD700, #FF8C00, #FFD700);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.5s ease;
-        }
-        
-        .wish-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-        }
-        
-        .wish-card:hover::before {
-            transform: scaleX(1);
-        }
-        
-        .wish-title {
-            font-size: 1.5rem;
-            color: #FFD700;
-            margin-bottom: 1rem;
-        }
-        
-        .wish-text {
-            font-size: 1.1rem;
-            line-height: 1.6;
-        }
-        
-        .interactive-section {
-            text-align: center;
-        }
-        
-        .btn {
-            background-color: #FFD700;
-            color: #0a1128;
-            border: none;
-            padding: 1rem 2rem;
-            font-size: 1.2rem;
-            border-radius: 50px;
-            cursor: pointer;
-            margin: 2rem 0;
-            transition: all 0.3s ease;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-        }
-        
-        .btn:hover {
-            background-color: #FF8C00;
-            transform: scale(1.05);
-            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
-        }
-        
-        .rose-container {
-            position: relative;
-            width: 200px;
-            height: 300px;
-            margin: 3rem auto;
-            perspective: 1000px;
-        }
-        
-        .rose {
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            transform-style: preserve-3d;
-            transition: transform 1s ease;
-        }
-
-        .rose svg {
-            width: 100%;
-            height: 100%;
-        }
-
-        .message-container {
-            margin-top: 3rem;
-            opacity: 0;
-            transition: opacity 1s ease;
-        }
-        
-        .signature {
-            font-family: 'Caveat', cursive;
-            font-size: 2rem;
-            margin-top: 2rem;
-            text-align: right;
-            color: #FFD700;
-        }
-        
-        .finale {
-            text-align: center;
-            padding: 5rem 0;
-        }
-        
-        .finale h2 {
-            margin-bottom: 2rem;
-        }
-        
-        .finale-text {
-            font-size: 1.2rem;
-            max-width: 800px;
-            margin: 0 auto 3rem;
-            line-height: 1.8;
-        }
-        
-        .stars-animation {
-            position: relative;
-            height: 300px;
-            margin-bottom: 3rem;
-        }
-        
-        .shooting-star {
-            position: absolute;
-            width: 150px;
-            opacity: 0;
-        }
-
-        .shooting-star svg {
-            width: 100%;
-            height: 100%;
-            filter: drop-shadow(0 0 10px #FFD700);
-        }
-        
-        @keyframes shootingStar {
-            0% {
-                transform: translate(-100%, -100%) rotate(45deg);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-            }
-            70% {
-                opacity: 1;
-            }
-            100% {
-                transform: translate(100%, 100%) rotate(45deg);
-                opacity: 0;
-            }
-        }
-        
-        .fox-container {
-            max-width: 500px;
-            margin: 3rem auto;
-            position: relative;
+        @keyframes sway {
+            0% { transform: rotate(-5deg); }
+            50% { transform: rotate(5deg); }
+            100% { transform: rotate(-5deg); }
         }
         
         .fox {
-            width: 100%;
-            transition: transform 0.5s ease;
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M20 60 L50 40 L80 60 L65 80 L35 80 Z" fill="orange"/><circle cx="40" cy="55" r="2" fill="black"/><circle cx="60" cy="55" r="2" fill="black"/><path d="M45 65 Q50 70 55 65" stroke="black" fill="transparent" stroke-width="1"/><path d="M25 45 L40 50" stroke="orange" fill="orange" stroke-width="8"/><path d="M75 45 L60 50" stroke="orange" fill="orange" stroke-width="8"/></svg>');
+            background-size: contain;
+            background-repeat: no-repeat;
+            bottom: 10px;
+            left: 30px;
+            animation: bounce 3s ease-in-out infinite;
         }
         
-        .fox:hover {
-            transform: scale(1.05);
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
         
-        .fox-quote {
-            font-family: 'Caveat', cursive;
-            font-size: 1.3rem;
+        .rose {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50 20 C60 10, 80 10, 80 30 C80 50, 50 70, 50 70 C50 70, 20 50, 20 30 C20 10, 40 10, 50 20" fill="red"/><path d="M50 70 L50 90" stroke="green" stroke-width="5"/><path d="M40 75 L55 75" stroke="green" stroke-width="2"/></svg>');
+            background-size: contain;
+            background-repeat: no-repeat;
+            bottom: 60px;
+            right: 40px;
+            animation: pulse 4s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        .content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgba(10, 13, 36, 0.7);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            animation: fadeIn 2s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .quote-card {
+            margin: 30px 0;
+            padding: 20px;
+            background-color: rgba(30, 32, 104, 0.5);
+            border-radius: 10px;
+            position: relative;
+            border-left: 4px solid #ffd700;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .quote-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .quote {
+            font-family: 'Marck Script', cursive;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+        
+        .wish {
+            padding: 10px;
+            background-color: rgba(30, 32, 104, 0.3);
+            border-radius: 8px;
+            margin-top: 10px;
+            font-size: 1.2rem;
+            display: none;
+            animation: fadeIn 1s ease-in-out;
+        }
+        
+        .active .wish {
+            display: block;
+        }
+        
+        .footer {
             text-align: center;
-            margin-top: 1.5rem;
-            color: #FFD700;
+            padding: 40px 0 20px;
+            font-size: 1.2rem;
+            color: #ffd700;
         }
         
-        .final-message {
+        .signature {
+            font-family: 'Marck Script', cursive;
             font-size: 2rem;
-            margin: 3rem 0;
-            text-align: center;
-            color: #FFD700;
+            margin-top: 10px;
+            animation: writeSignature 3s forwards;
             opacity: 0;
-            transform: scale(0.8);
-            transition: opacity 1s ease, transform 1s ease;
         }
         
-        .visible-final {
-            opacity: 1;
-            transform: scale(1);
+        @keyframes writeSignature {
+            0% { 
+                opacity: 0;
+                width: 0;
+            }
+            50% {
+                opacity: 1;
+                width: 50%;
+            }
+            100% { 
+                opacity: 1;
+                width: 100%;
+            }
         }
         
+        .age-number {
+            font-size: 8rem;
+            text-align: center;
+            color: #ffd700;
+            margin: 40px 0;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
+            font-weight: bold;
+            opacity: 0;
+            animation: popIn 1s forwards;
+            animation-delay: 2s;
+        }
+        
+        @keyframes popIn {
+            0% { transform: scale(0); opacity: 0; }
+            80% { transform: scale(1.2); opacity: 1; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
+        .button-container {
+            text-align: center;
+            margin: 40px 0;
+        }
+        
+        .magic-button {
+            padding: 15px 30px;
+            background: linear-gradient(45deg, #7B68EE, #1e2068);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(123, 104, 238, 0.4);
+        }
+        
+        .magic-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(123, 104, 238, 0.6);
+        }
+        
+        .magic-button:active {
+            transform: translateY(1px);
+        }
+        
+        /* Responsive styles */
         @media (max-width: 768px) {
-            h1 {
-                font-size: 2.5rem;
+            .header h1 {
+                font-size: 2.2rem;
             }
             
-            .subtitle {
+            .header h2 {
+                font-size: 1.6rem;
+            }
+            
+            .quote {
                 font-size: 1.3rem;
             }
             
-            .prince-quote {
-                font-size: 1.2rem;
-                padding: 1.5rem;
+            .planet {
+                width: 150px;
+                height: 150px;
             }
             
-            .wishes {
-                flex-direction: column;
-                align-items: center;
+            .age-number {
+                font-size: 6rem;
+            }
+            
+            .prince, .fox, .rose {
+                transform: scale(0.8);
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .header h2 {
+                font-size: 1.3rem;
+            }
+            
+            .quote {
+                font-size: 1.1rem;
             }
             
             .planet {
-                width: 200px;
-                height: 200px;
+                width: 120px;
+                height: 120px;
+            }
+            
+            .age-number {
+                font-size: 5rem;
+            }
+            
+            .prince, .fox, .rose {
+                transform: scale(0.7);
+            }
+            
+            .content {
+                padding: 15px;
+            }
+            
+            .quote-card {
+                padding: 15px;
             }
         }
+
+        .planet:hover {
+    animation: pulse 1s ease-in-out;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.quote-card {
+    /* Добавьте это к существующим стилям */
+    position: relative;
+    overflow: hidden;
+}
+
+.quote-card::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, rgba(255, 255, 255, 0) 70%);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+}
+
+.quote-card:hover::after {
+    opacity: 1;
+}
+
+.header h1 {
+    /* Добавьте это к существующим стилям */
+    position: relative;
+    display: inline-block;
+}
+
+.header h1::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #ffd700, transparent);
+    animation: lineGrow 3s forwards;
+    animation-delay: 2s;
+}
+
+@keyframes lineGrow {
+    0% { width: 0; }
+    100% { width: 100%; }
+}
+
+.age-number {
+    /* Добавьте это к существующим стилям */
+    position: relative;
+}
+
+.age-number::before, .age-number::after {
+    content: '★';
+    position: absolute;
+    color: #ffd700;
+    font-size: 2rem;
+    opacity: 0;
+    animation: starAppear 1s forwards;
+    animation-delay: 3s;
+}
+
+.age-number::before {
+    left: -40px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.age-number::after {
+    right: -40px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+@keyframes starAppear {
+    0% { opacity: 0; transform: translateY(-50%) scale(0); }
+    80% { opacity: 1; transform: translateY(-50%) scale(1.2); }
+    100% { opacity: 1; transform: translateY(-50%) scale(1); }
+}
+
+.magic-button {
+    /* Добавьте это к существующим стилям */
+    position: relative;
+    overflow: hidden;
+}
+
+.magic-button::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 70%);
+    opacity: 0;
+    transform: scale(0.5);
+    transition: transform 0.5s, opacity 0.5s;
+}
+
+.magic-button:hover::after {
+    opacity: 1;
+    transform: scale(1);
+}
     </style>
 </head>
 <body>
-    <div class="stars"></div>
-    
+    <div class="stars" id="stars"></div>
     <div class="container">
-        <section class="header">
+        <div class="header">
             <h1>С Днем Рождения!</h1>
-            <div class="subtitle">Уважаемый Игорь Владимирович</div>
-            <div class="prince-quote">
-                "Взрослые никогда ничего не понимают сами, а для детей очень утомительно без конца им все объяснять и растолковывать." <br><br>
-                Но Вы — тот редкий взрослый, который понимает суть вещей и помогает другим видеть самое важное.
-            </div>
-            <div class="scroll-prompt">Прокрутите вниз ↓</div>
-        </section>
+            <h2>Зорин Игорь Владимирович</h2>
+            <p>15 апреля 2025</p>
+        </div>
         
-        <section class="section" id="section1">
-            <h2>52 года мудрости и достижений</h2>
-            <div class="planet">
-                <svg class="prince" viewBox="0 0 100 200" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M30 100C30 80 70 80 70 100C70 120 30 120 30 100Z" fill="#FFD700"/>
-                    <circle cx="50" cy="70" r="15" fill="#FFD700"/>
-                    <path d="M40 140L50 100L60 140" stroke="#FFD700" fill="none"/>
-                    <path d="M30 120L70 120" stroke="#FFD700" fill="none"/>
-                </svg>
-            </div>
-            <div class="prince-quote">
-                "Светил так много, что никому их не счесть. Когда ты посмотришь на небо, тебе захочется узнать, на какой из этих звезд живу я, и ты будешь смеяться..."<br><br>
-                Подобно звездам, Ваши научные достижения освещают путь для многих.
-            </div>
-        </section>
+        <div class="age-number">52</div>
         
-        <section class="section" id="section2">
-            <h2>Пожелания от всего сердца</h2>
-            <div class="wishes">
-                <div class="wish-card">
-                    <div class="wish-title">Здоровья</div>
-                    <div class="wish-text">Крепкого здоровья и бесконечной энергии для воплощения всех Ваших идей и стремлений. Пусть каждый день приносит силы и вдохновение!</div>
-                </div>
-                <div class="wish-card">
-                    <div class="wish-title">Успехов</div>
-                    <div class="wish-text">Новых научных открытий, признания коллег и учеников. Пусть Ваш вклад в медицинскую науку будет оценен по достоинству!</div>
-                </div>
-                <div class="wish-card">
-                    <div class="wish-title">Счастья</div>
-                    <div class="wish-text">Пусть жизнь будет наполнена радостными моментами, теплом близких людей и всем, что делает Вас счастливым!</div>
-                </div>
-            </div>
-        </section>
+        <div class="planet">
+            <div class="prince"></div>
+            <div class="fox"></div>
+            <div class="rose"></div>
+        </div>
         
-        <section class="section interactive-section" id="section3">
-            <h2>Особое послание</h2>
-            <button class="btn" id="revealMessage">Открыть послание</button>
-            <div class="rose-container">
-                <div class="rose" id="rose">
-                    <svg viewBox="0 0 100 160" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M50 10C45 30 55 50 50 70C45 50 35 30 50 10Z" fill="#FF4D6D"/>
-                        <path d="M30 40C50 35 70 45 90 40C70 45 50 55 30 40Z" fill="#FF4D6D"/>
-                        <path d="M70 40C50 35 30 45 10 40C30 45 50 55 70 40Z" fill="#FF4D6D"/>
-                        <path d="M45 80C40 100 60 120 45 140C40 120 20 100 45 80Z" fill="#4CAF50"/>
-                    </svg>
-                </div>
-            </div>
-            <div class="message-container" id="messageContainer">
-                <div class="prince-quote">
-                    "Ты навсегда в ответе за всех, кого приручил." <br><br>
-                    Благодарю Вас за наставничество, за знания и опыт, которыми Вы щедро делитесь. За терпение и мудрость, которые помогают мне и другим Вашим ученикам становиться лучше.
-                </div>
-                <div class="signature">С уважением, Дёндёши Давид</div>
-            </div>
-        </section>
-        
-        <section class="section finale" id="section4">
-            <h2>С Днем Рождения!</h2>
-            <div class="finale-text">
-                Уважаемый Игорь Владимирович! Пусть этот праздничный день принесет Вам много радости и теплых пожеланий. Ваш профессионализм, мудрость и человечность вдохновляют нас каждый день. Спасибо за то, что Вы есть!
+        <div class="content">
+            <div class="quote-card">
+                <p class="quote">"Зорко одно лишь сердце. Самого главного глазами не увидишь."</p>
+                <div class="wish">Уважаемый Игорь Владимирович! Благодарю Вас за то, что научили меня видеть суть вещей и смотреть глубже, чем только глазами. Ваша мудрость и проницательность вдохновляют!</div>
             </div>
             
-            <div class="stars-animation">
-                <div class="shooting-star" id="star1">
-                    <svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M5 20L95 20M50 5L95 20L50 35" stroke="#FFD700" stroke-width="2" fill="none"/>
-                        <circle cx="95" cy="20" r="5" fill="#FFD700"/>
-                    </svg>
-                </div>
-                <div class="shooting-star" id="star2">
-                    <svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M5 20L95 20M50 5L95 20L50 35" stroke="#FFD700" stroke-width="2" fill="none"/>
-                        <circle cx="95" cy="20" r="5" fill="#FFD700"/>
-                    </svg>
-                </div>
-                <div class="shooting-star" id="star3">
-                    <svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M5 20L95 20M50 5L95 20L50 35" stroke="#FFD700" stroke-width="2" fill="none"/>
-                        <circle cx="95" cy="20" r="5" fill="#FFD700"/>
-                    </svg>
-                </div>
+            <div class="quote-card">
+                <p class="quote">"Ты навсегда в ответе за всех, кого приручил."</p>
+                <div class="wish">Спасибо за ответственность, с которой Вы относитесь к своим ученикам. Под Вашим руководством я чувствую поддержку и уверенность в своей научной работе.</div>
             </div>
             
-            <div class="fox-container">
-                <img src="/api/placeholder/500/350" alt="Лис" class="fox">
-                <div class="fox-quote">"Зорко одно лишь сердце. Самого главного глазами не увидишь."</div>
+            <div class="quote-card">
+                <p class="quote">"Если любишь цветок – единственный, какого больше нет ни на одной из многих миллионов звезд, этого довольно: смотришь на небо и чувствуешь себя счастливым."</p>
+                <div class="wish">Желаю Вам находить счастье в уникальности каждого момента жизни. Пусть Ваша врачебная и научная деятельность продолжает быть тем самым редким цветком, который приносит радость и смысл.</div>
             </div>
             
-            <div class="final-message" id="finalMessage">
-                52 года — это всего лишь начало самого интересного путешествия!
+            <div class="quote-card">
+                <p class="quote">"Когда даешь себя приручить, потом случается и плакать."</p>
+                <div class="wish">Благодарю за то, что открыли свое сердце для нас, своих учеников. Ценность связей между людьми делает нас сильнее, даже когда приносит переживания.</div>
             </div>
-        </section>
+            
+            <div class="quote-card">
+                <p class="quote">"Судить себя куда труднее, чем других. Если ты сумеешь правильно судить себя, значит, ты поистине мудр."</p>
+                <div class="wish">Вы являетесь примером настоящей мудрости и самокритичности. Ваше стремление к совершенству в науке и медицине вдохновляет всех нас.</div>
+            </div>
+            
+            <div class="button-container">
+                <button class="magic-button" id="magic-button">Особое поздравление</button>
+            </div>
+            
+            <div id="special-wish" style="display: none; text-align: center; animation: fadeIn 2s ease-in-out;">
+                <h2 style="color: #ffd700; margin-bottom: 20px;">Дорогой Игорь Владимирович!</h2>
+                <p style="font-size: 1.3rem; line-height: 1.8; margin-bottom: 20px;">
+                    Как Маленький принц, путешествующий по вселенной науки, я счастлив, что на пути встретил такую яркую звезду, как Вы. Ваш профессионализм, ум и доброта освещают путь не только мне, но и всем Вашим ученикам.
+                </p>
+                <p style="font-size: 1.3rem; line-height: 1.8; margin-bottom: 20px;">
+                    В день Вашего 52-летия хочу пожелать, чтобы мир вокруг отвечал Вам тем же теплом и заботой, которые Вы дарите другим. Пусть каждый новый день приносит открытия, вдохновение и возможности для реализации самых смелых идей!
+                </p>
+                <p style="font-size: 1.3rem; line-height: 1.8; margin-bottom: 20px;">
+                    Здоровья Вам, счастья, благополучия и долгих лет плодотворной научной деятельности!
+                </p>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>С глубоким уважением и благодарностью,</p>
+            <div class="signature">Дёндёши Давид</div>
+        </div>
     </div>
     
     <script>
-        // Создаем звезды для фона
-        const starsContainer = document.querySelector('.stars');
-        const starsCount = 150;
+        // Create stars
+        function createStars() {
+    const starsContainer = document.getElementById('stars');
+    const starCount = Math.floor(window.innerWidth * window.innerHeight / 500);
+    
+    // Create stars
+    for (let i = 0; i < starCount; i++) {
+        const star = document.createElement('div');
+        star.classList.add('star');
         
-        for (let i = 0; i < starsCount; i++) {
-            const star = document.createElement('div');
-            star.classList.add('star');
-            star.style.width = `${Math.random() * 3 + 1}px`;
-            star.style.height = star.style.width;
-            star.style.left = `${Math.random() * 100}%`;
-            star.style.top = `${Math.random() * 100}%`;
-            star.style.animationDelay = `${Math.random() * 2}s`;
-            starsContainer.appendChild(star);
-        }
+        // Random position
+        const left = Math.random() * 100;
+        const top = Math.random() * 100;
         
-        // Обработка прокрутки и анимации секций
-        const sections = document.querySelectorAll('.section');
-        const finalMessage = document.getElementById('finalMessage');
+        // Random size
+        const sizeClass = Math.random() < 0.6 ? 'small' : (Math.random() < 0.9 ? 'medium' : 'large');
+        star.classList.add(sizeClass);
         
-        function checkScroll() {
-            sections.forEach(section => {
-                const sectionTop = section.getBoundingClientRect().top;
-                const sectionBottom = section.getBoundingClientRect().bottom;
-                const windowHeight = window.innerHeight;
-                
-                if (sectionTop < windowHeight * 0.75 && sectionBottom > 0) {
-                    section.classList.add('visible');
-                }
-            });
+        // Random animation delay
+        const delay = Math.random() * 5;
+        const duration = 3 + Math.random() * 4;
+        
+        star.style.left = `${left}%`;
+        star.style.top = `${top}%`;
+        star.style.animationDelay = `${delay}s`;
+        star.style.animationDuration = `${duration}s`;
+        
+        starsContainer.appendChild(star);
+    }
+    
+    // Add shooting stars
+    for (let i = 0; i < 10; i++) {
+        const shootingStar = document.createElement('div');
+        shootingStar.classList.add('shooting-star');
+        
+        const left = Math.random() * 100;
+        const top = Math.random() * 100;
+        const angle = Math.random() * 45;
+        const delay = Math.random() * 20;
+        
+        shootingStar.style.left = `${left}%`;
+        shootingStar.style.top = `${top}%`;
+        shootingStar.style.transform = `rotate(${angle}deg)`;
+        shootingStar.style.animationDelay = `${delay}s`;
+        
+        starsContainer.appendChild(shootingStar);
+    }
+    
+    // Add nebulas
+    for (let i = 0; i < 5; i++) {
+        const nebula = document.createElement('div');
+        nebula.classList.add('nebula');
+        
+        const size = 100 + Math.random() * 200;
+        const left = Math.random() * 100;
+        const top = Math.random() * 100;
+        const delay = Math.random() * 10;
+        
+        nebula.style.width = `${size}px`;
+        nebula.style.height = `${size}px`;
+        nebula.style.left = `${left}%`;
+        nebula.style.top = `${top}%`;
+        nebula.style.animationDelay = `${delay}s`;
+        
+        starsContainer.appendChild(nebula);
+    }
+}
+        
+        // Add craters to planet
+        function addCraters() {
+            const planet = document.querySelector('.planet');
+            const craterCount = 8;
             
-            // Final message animation
-            const finalMessageTop = finalMessage.getBoundingClientRect().top;
-            if (finalMessageTop < window.innerHeight * 0.8) {
-                finalMessage.classList.add('visible-final');
+            for (let i = 0; i < craterCount; i++) {
+                const crater = document.createElement('div');
+                crater.classList.add('crater');
+                
+                const size = 5 + Math.random() * 15;
+                const left = 10 + Math.random() * 80;
+                const top = 10 + Math.random() * 80;
+                
+                crater.style.width = `${size}px`;
+                crater.style.height = `${size}px`;
+                crater.style.left = `${left}%`;
+                crater.style.top = `${top}%`;
+                
+                planet.appendChild(crater);
             }
         }
         
-        window.addEventListener('scroll', checkScroll);
-        window.addEventListener('resize', checkScroll);
-        
-        // Initial check
-        checkScroll();
-        
-        // Обработка кнопки "Открыть послание"
-        const revealButton = document.getElementById('revealMessage');
-        const messageContainer = document.getElementById('messageContainer');
-        const rose = document.getElementById('rose');
-        
-        revealButton.addEventListener('click', () => {
-            rose.style.transform = 'rotateY(360deg)';
-            setTimeout(() => {
-                messageContainer.style.opacity = '1';
-                revealButton.style.display = 'none';
-            }, 500);
-        });
-        
-        // Анимация падающих звезд
-        const shootingStars = document.querySelectorAll('.shooting-star');
-        
-        function animateShootingStars() {
-            shootingStars.forEach((star, index) => {
-                setTimeout(() => {
-                    star.style.top = `${Math.random() * 80}%`;
-                    star.style.left = `${Math.random() * 20}%`;
-                    star.style.animation = `shootingStar 2s ease-in-out forwards`;
+        // Toggle quotes
+        function setupQuoteCards() {
+            const quoteCards = document.querySelectorAll('.quote-card');
+            
+            quoteCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    // Close all other cards
+                    quoteCards.forEach(otherCard => {
+                        if (otherCard !== card) {
+                            otherCard.classList.remove('active');
+                        }
+                    });
                     
-                    star.addEventListener('animationend', () => {
-                        star.style.animation = '';
-                        setTimeout(() => {
-                            animateShootingStar(star);
-                        }, Math.random() * 3000 + 2000);
-                    }, { once: true });
-                }, index * 1000);
+                    // Toggle current card
+                    this.classList.toggle('active');
+                });
             });
         }
         
-        function animateShootingStar(star) {
-            star.style.top = `${Math.random() * 80}%`;
-            star.style.left = `${Math.random() * 20}%`;
-            star.style.animation = `shootingStar 2s ease-in-out forwards`;
+        // Special wish button
+        function setupSpecialWish() {
+            const magicButton = document.getElementById('magic-button');
+            const specialWish = document.getElementById('special-wish');
             
-            star.addEventListener('animationend', () => {
-                star.style.animation = '';
-                setTimeout(() => {
-                    animateShootingStar(star);
-                }, Math.random() * 3000 + 2000);
-            }, { once: true });
-        }
-        
-        // Запускаем анимацию звезд при прокрутке до соответствующей секции
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    animateShootingStars();
-                    observer.unobserve(entry.target);
+            magicButton.addEventListener('click', function() {
+                if (specialWish.style.display === 'none') {
+                    specialWish.style.display = 'block';
+                    magicButton.textContent = 'Скрыть поздравление';
+                    
+                    // Scroll to special wish
+                    specialWish.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                } else {
+                    specialWish.style.display = 'none';
+                    magicButton.textContent = 'Особое поздравление';
                 }
             });
-        }, { threshold: 0.5 });
+        }
         
-        observer.observe(document.querySelector('.stars-animation'));
-        
-        // Интерактивность с планетой
-        const planet = document.querySelector('.planet');
-        
-        planet.addEventListener('mousemove', (e) => {
-            const xAxis = (window.innerWidth / 2 - e.pageX) / 25;
-            const yAxis = (window.innerHeight / 2 - e.pageY) / 25;
-            planet.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+        // Initialize
+        window.addEventListener('DOMContentLoaded', function() {
+            createStars();
+            addCraters();
+            setupQuoteCards();
+            setupSpecialWish();
+            
+            // Animate signature after delay
+            setTimeout(() => {
+                document.querySelector('.signature').style.opacity = 1;
+            }, 1000);
         });
-        
-        planet.addEventListener('mouseleave', () => {
-            planet.style.transform = 'rotateY(0) rotateX(0)';
+
+        // Анимация при прокрутке
+function setupScrollAnimations() {
+    const elements = document.querySelectorAll('.quote-card, .planet, .age-number, .footer');
+    
+    function checkScroll() {
+        elements.forEach(el => {
+            const rect = el.getBoundingClientRect();
+            const windowHeight = window.innerHeight;
+            
+            if (rect.top < windowHeight * 0.9) {
+                el.style.opacity = '1';
+                el.style.transform = 'translateY(0)';
+            }
         });
+    }
+    
+    // Установите начальные стили
+    elements.forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+    });
+    
+    // Проверьте при загрузке и при прокрутке
+    window.addEventListener('scroll', checkScroll);
+    checkScroll(); // Проверьте при загрузке
+}
     </script>
 </body>
 </html>
